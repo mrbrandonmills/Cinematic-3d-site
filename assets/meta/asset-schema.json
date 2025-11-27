@@ -1,0 +1,218 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "3D Asset Metadata",
+  "description": "Schema for 3D asset metadata used in the cinematic scroll experience",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the asset (e.g., 'station-home', 'station-store')",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "category": {
+      "type": "string",
+      "description": "Asset category or type",
+      "enum": [
+        "hero_stop",
+        "environment",
+        "prop",
+        "character",
+        "ui_element",
+        "particle_system"
+      ]
+    },
+    "file": {
+      "type": "string",
+      "description": "Path to the GLB file relative to project root",
+      "pattern": "^models/.*\\.glb$"
+    },
+    "scale": {
+      "type": "array",
+      "description": "Scale factors [x, y, z]",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "default": [1, 1, 1]
+    },
+    "position": {
+      "type": "array",
+      "description": "Position in 3D space [x, y, z]",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "default": [0, 0, 0]
+    },
+    "rotation": {
+      "type": "array",
+      "description": "Rotation in radians [x, y, z]",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "default": [0, 0, 0]
+    },
+    "animation": {
+      "type": "object",
+      "description": "Animation configuration for this asset",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["idle", "loop", "scroll_triggered", "timeline", "morph", "none"],
+          "default": "none"
+        },
+        "params": {
+          "type": "object",
+          "description": "Animation-specific parameters",
+          "properties": {
+            "duration": {
+              "type": "number",
+              "description": "Duration in seconds"
+            },
+            "delay": {
+              "type": "number",
+              "description": "Delay before starting in seconds"
+            },
+            "ease": {
+              "type": "string",
+              "description": "GSAP easing function",
+              "default": "power2.inOut"
+            },
+            "scrollStart": {
+              "type": "string",
+              "description": "ScrollTrigger start position",
+              "default": "top center"
+            },
+            "scrollEnd": {
+              "type": "string",
+              "description": "ScrollTrigger end position",
+              "default": "bottom center"
+            },
+            "clipName": {
+              "type": "string",
+              "description": "Name of animation clip from GLB"
+            },
+            "loop": {
+              "type": "boolean",
+              "description": "Whether animation should loop",
+              "default": false
+            }
+          }
+        }
+      }
+    },
+    "section": {
+      "type": "string",
+      "description": "Scroll section this asset belongs to (e.g., 'home', 'store', 'gallery')"
+    },
+    "visibility": {
+      "type": "object",
+      "description": "Visibility settings",
+      "properties": {
+        "default": {
+          "type": "boolean",
+          "description": "Whether asset is visible by default",
+          "default": true
+        },
+        "fadeIn": {
+          "type": "boolean",
+          "description": "Whether to fade in on section enter",
+          "default": false
+        },
+        "fadeOut": {
+          "type": "boolean",
+          "description": "Whether to fade out on section exit",
+          "default": false
+        }
+      }
+    },
+    "lighting": {
+      "type": "object",
+      "description": "Lighting settings",
+      "properties": {
+        "baked": {
+          "type": "boolean",
+          "description": "Whether lighting is baked into textures",
+          "default": true
+        },
+        "castShadow": {
+          "type": "boolean",
+          "description": "Whether asset casts shadows",
+          "default": false
+        },
+        "receiveShadow": {
+          "type": "boolean",
+          "description": "Whether asset receives shadows",
+          "default": false
+        }
+      }
+    },
+    "optimization": {
+      "type": "object",
+      "description": "Optimization settings",
+      "properties": {
+        "dracoCompressed": {
+          "type": "boolean",
+          "description": "Whether GLB uses Draco compression",
+          "default": true
+        },
+        "ktx2Textures": {
+          "type": "boolean",
+          "description": "Whether to use KTX2 texture format",
+          "default": false
+        },
+        "lodLevels": {
+          "type": "number",
+          "description": "Number of LOD levels available",
+          "default": 1
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata",
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Asset creator"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification timestamp"
+        },
+        "version": {
+          "type": "string",
+          "description": "Asset version",
+          "default": "1.0.0"
+        },
+        "polycount": {
+          "type": "number",
+          "description": "Triangle/polygon count"
+        },
+        "fileSize": {
+          "type": "number",
+          "description": "File size in bytes"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags for categorization"
+        }
+      }
+    }
+  },
+  "required": ["id", "category", "file", "section"],
+  "additionalProperties": false
+}

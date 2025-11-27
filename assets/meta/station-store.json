@@ -1,0 +1,49 @@
+{
+  "id": "station-store",
+  "category": "hero_stop",
+  "file": "models/station-store.glb",
+  "scale": [1.0, 1.0, 1.0],
+  "position": [30, 0, 0],
+  "rotation": [0, 0, 0],
+
+  "animation": {
+    "type": "scroll_triggered",
+    "params": {
+      "duration": 2.0,
+      "ease": "power2.out",
+      "scrollStart": "top center",
+      "scrollEnd": "center center",
+      "loop": false
+    }
+  },
+
+  "section": "store",
+
+  "visibility": {
+    "default": false,
+    "fadeIn": true,
+    "fadeOut": true
+  },
+
+  "lighting": {
+    "baked": true,
+    "castShadow": false,
+    "receiveShadow": false
+  },
+
+  "optimization": {
+    "dracoCompressed": true,
+    "ktx2Textures": false,
+    "lodLevels": 1
+  },
+
+  "metadata": {
+    "author": "Asset Agent",
+    "created": "2025-11-26T00:00:00Z",
+    "modified": "2025-11-26T00:00:00Z",
+    "version": "1.0.0",
+    "polycount": 48000,
+    "fileSize": 2800000,
+    "tags": ["station", "store", "hero", "commercial", "shopping"]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "station-home",
+  "category": "cinematic_station",
+  "file": "models/station-home.glb",
+  "scale": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "position": [
+    0,
+    0,
+    0
+  ],
+  "rotation": [
+    0,
+    0,
+    0
+  ],
+  "animation": {
+    "type": "cinematic_idle",
+    "params": {
+      "subtle_sway": true,
+      "light_flicker": true,
+      "duration": 6.0,
+      "ease": "sine.inOut"
+    }
+  },
+  "section": "home",
+  "visibility": {
+    "default": true,
+    "fadeIn": true,
+    "fadeOut": true,
+    "transitionDuration": 1.5
+  },
+  "quality": "cinematic",
+  "features": [
+    "subdivision_surfaces",
+    "pbr_materials",
+    "emission_lights",
+    "beveled_edges",
+    "photorealistic"
+  ]
+}

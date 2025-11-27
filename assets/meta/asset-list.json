@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-11-26T00:00:00Z",
+  "total_assets": 4,
+  "sections": ["home", "store", "gallery", "blog"],
+
+  "assets": [
+    {
+      "id": "station-home",
+      "category": "hero_stop",
+      "section": "home",
+      "status": "complete",
+      "priority": "high",
+      "description": "Main home station with welcoming platform, modern architecture, warm lighting"
+    },
+    {
+      "id": "station-store",
+      "category": "hero_stop",
+      "section": "store",
+      "status": "planned",
+      "priority": "high",
+      "description": "Commercial station with product displays, bright lighting, shopping atmosphere"
+    },
+    {
+      "id": "station-gallery",
+      "category": "hero_stop",
+      "section": "gallery",
+      "status": "planned",
+      "priority": "medium",
+      "description": "Minimalist gallery station with spotlights, art display areas, clean aesthetic"
+    },
+    {
+      "id": "station-blog",
+      "category": "hero_stop",
+      "section": "blog",
+      "status": "planned",
+      "priority": "medium",
+      "description": "Cozy blog station with reading nook, bookshelves, warm personal atmosphere"
+    }
+  ],
+
+  "dependencies": {
+    "shared_textures": [
+      "concrete_platform.png",
+      "metal_rails.png",
+      "glass_panel.png"
+    ],
+    "shared_materials": [
+      "platform_material",
+      "rail_material",
+      "sign_emissive"
+    ]
+  },
+
+  "generation_order": [
+    "station-home",
+    "station-store",
+    "station-gallery",
+    "station-blog"
+  ]
+}

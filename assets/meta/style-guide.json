@@ -1,0 +1,192 @@
+{
+  "name": "Cinematic Train Station Journey",
+  "version": "1.0.0",
+  "theme": "Modern minimalist with warm lighting",
+  "description": "A scroll-driven cinematic experience where users travel between different train stations, each representing a section of the site (Home, Store, Gallery, Blog)",
+
+  "color_palette": {
+    "primary": {
+      "hex": "#2C3E50",
+      "description": "Deep blue-gray for main structures"
+    },
+    "secondary": {
+      "hex": "#E74C3C",
+      "description": "Warm red for accent details"
+    },
+    "tertiary": {
+      "hex": "#ECF0F1",
+      "description": "Light gray for platforms and floors"
+    },
+    "accent": {
+      "hex": "#F39C12",
+      "description": "Golden orange for lights and highlights"
+    },
+    "background": {
+      "hex": "#1A1A2E",
+      "description": "Dark blue-black for sky/background"
+    }
+  },
+
+  "materials": {
+    "default": {
+      "type": "PBR",
+      "roughness": 0.6,
+      "metalness": 0.2,
+      "description": "Default material for most surfaces"
+    },
+    "metal": {
+      "type": "PBR",
+      "roughness": 0.3,
+      "metalness": 0.9,
+      "description": "For metal rails, signs, structural elements"
+    },
+    "glass": {
+      "type": "PBR",
+      "roughness": 0.05,
+      "metalness": 0.0,
+      "transmission": 0.95,
+      "description": "For windows and transparent elements"
+    },
+    "concrete": {
+      "type": "PBR",
+      "roughness": 0.8,
+      "metalness": 0.0,
+      "description": "For platforms and structural concrete"
+    },
+    "emissive": {
+      "type": "PBR",
+      "emissive": true,
+      "emissiveIntensity": 2.0,
+      "description": "For lights, signs, and glowing elements"
+    }
+  },
+
+  "lighting": {
+    "ambient": {
+      "color": "#404050",
+      "intensity": 0.4,
+      "description": "Soft ambient fill light"
+    },
+    "directional": {
+      "color": "#FFF5E1",
+      "intensity": 0.8,
+      "position": [5, 10, 7],
+      "description": "Main directional light (sun/moon)"
+    },
+    "accent_lights": {
+      "color": "#F39C12",
+      "intensity": 1.5,
+      "description": "Warm accent lights at each station"
+    },
+    "baking": {
+      "enabled": true,
+      "samples": 128,
+      "bounces": 3,
+      "description": "Settings for baking lighting in Blender"
+    }
+  },
+
+  "geometry": {
+    "style": "Low-poly with smooth shading",
+    "target_polycount": {
+      "hero_stop": 50000,
+      "environment": 20000,
+      "prop": 5000,
+      "character": 15000
+    },
+    "units": "metric",
+    "world_scale": "1 Blender unit = 1 meter",
+    "guidelines": [
+      "Use quad topology where possible for clean geometry",
+      "Apply edge splits for sharp edges (train platform edges, building corners)",
+      "Keep UV islands well-organized and minimize seams",
+      "Use consistent naming: [category]_[name]_[variant]",
+      "Apply modifiers before export (except Armature)"
+    ]
+  },
+
+  "textures": {
+    "resolution": {
+      "hero_stop": "2048x2048",
+      "environment": "1024x1024",
+      "prop": "512x512"
+    },
+    "format": "PNG for source, convert to KTX2 for web",
+    "channels": {
+      "albedo": "BaseColor / Diffuse",
+      "normal": "Normal map (OpenGL format)",
+      "orm": "Combined: Occlusion (R), Roughness (G), Metalness (B)",
+      "emissive": "Emissive map for lights"
+    },
+    "baking": [
+      "Bake combined lighting (indirect + direct) to albedo",
+      "Bake ambient occlusion separately if needed",
+      "Use margin of 16px to prevent seams"
+    ]
+  },
+
+  "animation": {
+    "framerate": 24,
+    "export_format": "GLB with embedded animations",
+    "naming_convention": "[action]_[asset]_[variant]",
+    "types": {
+      "idle": "Subtle looping animations (lights flickering, flags waving)",
+      "scroll_triggered": "Animations triggered by scroll position",
+      "timeline": "Choreographed sequences for cinematic moments"
+    }
+  },
+
+  "export_settings": {
+    "format": "GLB (binary GLTF)",
+    "compression": "Draco (compression level 6)",
+    "texture_format": "PNG embedded (convert to KTX2 post-export)",
+    "include": [
+      "Mesh data",
+      "Materials (PBR)",
+      "Animations (if any)",
+      "Custom properties"
+    ],
+    "exclude": [
+      "Cameras",
+      "Lights (except emissive meshes)",
+      "Empty objects",
+      "Hidden objects"
+    ],
+    "transforms": {
+      "apply_modifiers": true,
+      "apply_scale": true,
+      "forward_axis": "-Z",
+      "up_axis": "Y"
+    }
+  },
+
+  "stations": {
+    "home": {
+      "theme": "Welcoming, warm lighting, modern architecture",
+      "mood": "Inviting and professional",
+      "key_elements": ["Platform", "Benches", "Welcome sign", "Ambient lighting"]
+    },
+    "store": {
+      "theme": "Commercial, bright display lighting, product showcases",
+      "mood": "Energetic and engaging",
+      "key_elements": ["Display shelves", "Product stands", "Neon signs", "Shopping elements"]
+    },
+    "gallery": {
+      "theme": "Minimalist, spotlighting, art-focused",
+      "mood": "Refined and contemplative",
+      "key_elements": ["Art frames", "Gallery lighting", "Open space", "Clean walls"]
+    },
+    "blog": {
+      "theme": "Cozy, reading nook atmosphere, warm tones",
+      "mood": "Comfortable and personal",
+      "key_elements": ["Seating area", "Bookshelves", "Desk setup", "Soft lighting"]
+    }
+  },
+
+  "technical_requirements": {
+    "total_file_size_target": "10MB compressed, 20MB uncompressed",
+    "performance_target": "60 FPS on mid-range devices",
+    "compatibility": "WebGL 2.0 minimum",
+    "fallbacks": "Provide low-poly LODs for mobile"
+  }
+}
